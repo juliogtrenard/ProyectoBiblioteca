@@ -21,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -388,7 +387,7 @@ public class PrincipalController implements Initializable {
                 stage.setScene(scene);
                 stage.setMinWidth(500);
                 stage.setMinHeight(350);
-                stage.setTitle(resources.getString("window.add") + " " + resources.getString("window.history") + " - " + resources.getString("app.name"));
+                stage.setTitle(resources.getString("ventana.aniadir") + " " + resources.getString("ventana.historial") + " - " + resources.getString("principal.titulo"));
                 stage.initOwner(ventana);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
@@ -581,7 +580,7 @@ public class PrincipalController implements Initializable {
                         cargarHistorialPrestamos();
                         mostrarConfirmacion(resources.getString("eliminar.historial.bien"));
                     } else {
-                        mostrarAlerta(resources.getString("eliminar.historial.fallol"));
+                        mostrarAlerta(resources.getString("eliminar.historial.fallo"));
                     }
                 }
             }
