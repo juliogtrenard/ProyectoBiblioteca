@@ -60,23 +60,20 @@ public class DBConnect {
     }
 
     /**
-     * Test de la conexión a la base de datos
+     * Prueba la conexión a una base de datos
      *
+     * @param address direccion
+     * @param port puerto
      * @param user usuario
      * @param password contraseña
-     * @return 1, error o null
+     * @param database base de datos
+     * @return 1/error/null
      */
-    public static String testConnection(String user, String password) {
+    public static String testConnection(String address, int port, String user, String password, String database) {
         try {
-            Properties configuracion = getConfiguration();
-            String address = configuracion.getProperty("address");
-            String port = configuracion.getProperty("port");
-            String database = configuracion.getProperty("database");
-
             Properties authentication = new Properties();
             authentication.setProperty("user", user);
             authentication.setProperty("password", password);
-
             Connection connection1 = DriverManager.getConnection("jdbc:mariadb://" + address + ":" + port + "/" + database + "?serverTimezone=Europe/Madrid", authentication);
             if (connection1.isValid(10)) {
                 connection1.close();

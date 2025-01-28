@@ -2,6 +2,7 @@ package es.juliogtrenard.proyectobiblioteca.controller;
 
 import es.juliogtrenard.proyectobiblioteca.db.DBConnect;
 import es.juliogtrenard.proyectobiblioteca.language.LanguageManager;
+import es.juliogtrenard.proyectobiblioteca.utils.ValidadorNumero;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +49,24 @@ public class LoginController implements Initializable {
     private TextField txtUsuario;
 
     /**
+     * Direccion IP
+     */
+    @FXML
+    private TextField txtDireccion;
+
+    /**
+     * Puerto
+     */
+    @FXML
+    private TextField txtPuerto;
+
+    /**
+     * Nombre de la BBDD
+     */
+    @FXML
+    private TextField txtBD;
+
+    /**
      * BBDD
      */
     private Properties db;
@@ -73,19 +92,18 @@ public class LoginController implements Initializable {
     @FXML
     void probarConexion(ActionEvent event) {
         String error = validar();
-
         if (!error.isEmpty()) {
             btnConfirmar.setDisable(true);
             mostrarAlerta(error);
         } else {
-            String valido = DBConnect.testConnection(txtUsuario.getText(), txtContrasenia.getText());
+            String valido = DBConnect.testConnection(txtDireccion.getText(), Integer.parseInt(txtPuerto.getText()), txtUsuario.getText(), txtContrasenia.getText(), txtBD.getText());
             if (valido != null && valido.equals("1")) {
                 mostrarConfirmacion("Conexión valida");
                 btnConfirmar.setDisable(false);
             } else {
                 btnConfirmar.setDisable(true);
                 if (valido == null) {
-                    mostrarAlerta("Conexión invalida, intentalo de nuevo");
+                    mostrarAlerta("Conexión invalida");
                 } else {
                     mostrarAlerta("Error: " + valido);
                 }
@@ -94,24 +112,39 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Valida los datos ingresados y devuelve los posibles errores
+     * Valida el formulario y devuelve los posibles errores
      *
      * @return string con posibles errores
      */
     private String validar() {
         String error = "";
-
+        if (txtDireccion.getText().isEmpty()) {
+            error += "El campo dirección no puede estar vacío\n";
+        } else {
+            db.setProperty("address", txtDireccion.getText());
+        }
+        if (txtPuerto.getText().isEmpty()) {
+            error += "El campo puerto no puede estar vacío\n";
+        } else if (!ValidadorNumero.validarInt(txtPuerto.getText())) {
+            error += "El campo puerto tiene que ser numérico\n";
+        } else {
+            db.setProperty("port", txtPuerto.getText());
+        }
         if (txtUsuario.getText().isEmpty()) {
-            error += "Ingresa el usuario\n";
+            error += "El campo usuario no puede estar vacío\n";
         } else {
             db.setProperty("user", txtUsuario.getText());
         }
         if (txtContrasenia.getText().isEmpty()) {
-            error += "Ingresa la contraseña\n";
+            error += "El campo contraseña no puede estar vacío\n";
         } else {
             db.setProperty("password", txtContrasenia.getText());
         }
-
+        if (txtBD.getText().isEmpty()) {
+            error += "EL nombre de la base de datos no puede estar vacío\n";
+        } else {
+            db.setProperty("database", txtBD.getText());
+        }
         return error;
     }
 
