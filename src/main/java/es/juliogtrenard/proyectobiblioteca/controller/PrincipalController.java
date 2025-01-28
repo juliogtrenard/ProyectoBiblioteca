@@ -381,7 +381,7 @@ public class PrincipalController implements Initializable {
         } else {
             try {
                 Window ventana = tabla.getScene().getWindow();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/fxml/historialPrestamo.fxml"),resources);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/fxml/nuevoHistorialPrestamo.fxml"),resources);
                 Scene scene = new Scene(fxmlLoader.load());
                 Stage stage = new Stage();
                 stage.setScene(scene);
