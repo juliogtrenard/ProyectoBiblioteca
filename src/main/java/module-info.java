@@ -7,4 +7,6 @@ module es.juliogtrenard.proyectobiblioteca {
 
     opens es.juliogtrenard.proyectobiblioteca to javafx.fxml;
     exports es.juliogtrenard.proyectobiblioteca;
+    opens es.juliogtrenard.proyectobiblioteca.controller to javafx.fxml;
+    exports es.juliogtrenard.proyectobiblioteca.controller;
 }
