@@ -51,7 +51,7 @@ RUN git clone https://github.com/juliogtrenard/ProyectoBiblioteca.git
 WORKDIR /ProyectoBiblioteca
 
 # Construir el proyecto
-RUN mvn package
+RUN mvn clean package
 
 # Ejecutar el JAR
 CMD java -jar target/ProyectoBiblioteca-1.0-SNAPSHOT-jar-with-dependencies.jar
