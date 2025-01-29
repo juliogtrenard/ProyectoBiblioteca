@@ -1,0 +1,83 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="SubinformeGraficos1" language="java" columnCount="1" pageWidth="300" pageHeight="842" orientation="Landscape" columnWidth="300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5fbf7cf1-c3fe-410b-9332-41774358d67e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MariaDB Contra Docker en Local"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14.0" bold="true"/>
+	<dataset name="prestamosActivos" uuid="eb290e7b-ab27-4494-a25f-52b436ab726c">
+		<property name="com.jaspersoft.studio.data.sql.tables" value="bGlicm9zLmBQcmVzdGFtb2AgLDIwLDIwLDZjMjc5ZTJkLTA4YjYtNGExYy04Y2Y5LTE4ZGE0NTNl&#xa;NmQ0YTtsaWJyb3MuYEFsdW1ub2AgLDE4NSwyMCwzZjYzZjk2OC1iZGRhLTQ5MTYtYTE1ZS1kYTk1&#xa;NDE5N2EyNTQ7"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MariaDB Contra Docker en Local"/>
+		<query language="SQL"><![CDATA[SELECT count( id_prestamo) AS prestamos,
+	a.nombre
+FROM libros.`Prestamo` p,
+	libros.`Alumno` a
+WHERE 
+	 a.dni = p.dni_alumno]]></query>
+		<field name="prestamos" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="prestamos"/>
+			<property name="com.jaspersoft.studio.field.label" value="prestamos"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+		</field>
+	</dataset>
+	<query language="SQL"><![CDATA[SELECT *
+FROM libros.Alumno]]></query>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<background splitType="Stretch"/>
+	<columnHeader height="26">
+		<element kind="staticText" uuid="ffbc0dc8-d781-478c-bf14-99a1dd24c47f" mode="Opaque" x="25" y="2" width="250" height="20" forecolor="#FFFFFF" backcolor="#FF050D" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle" style="Column header">
+			<text><![CDATA[Préstamos activos]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="139ac3bf-00ad-4ac1-9334-3f3881e0bdd7"/>
+		</element>
+	</columnHeader>
+	<summary height="225">
+		<element kind="chart" chartType="bar" uuid="58b0eda0-9eab-4541-b1a6-ac325ab93d80" x="35" y="0" width="230" height="185" evaluationTime="Report" linkType="None" linkTarget="Self">
+			<dataset kind="category" resetType="Report">
+				<datasetRun uuid="36ee1d58-ceb3-43c7-9c6a-c388f8e7d8f6" subDataset="prestamosActivos">
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				</datasetRun>
+				<series>
+					<seriesExpression><![CDATA[$F{nombre}]]></seriesExpression>
+					<categoryExpression><![CDATA[0]]></categoryExpression>
+					<valueExpression><![CDATA[$F{prestamos}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nombre}]]></labelExpression>
+					<itemHyperlink linkType="None" linkTarget="Self"/>
+				</series>
+			</dataset>
+			<plot categoryAxisLabelColor="#000000" categoryAxisTickLabelColor="#000000" categoryAxisLineColor="#000000" valueAxisLabelColor="#000000" valueAxisTickLabelColor="#000000" valueAxisLineColor="#000000">
+				<itemLabel/>
+			</plot>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</summary>
+</jasperReport>

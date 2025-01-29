@@ -1,0 +1,157 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="InformeLibros" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MariaDB Contra Docker en Local"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50.0" bold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18.0" bold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14.0" bold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle mode="Opaque" backcolor="#F0EFEF">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<query language="SQL"><![CDATA[SELECT 
+    a.dni,
+    a.nombre,
+    a.apellido1,
+    a.apellido2,
+    COUNT(DISTINCT p.id_prestamo) AS activos,
+    COUNT(DISTINCT h.id_prestamo) AS historico
+FROM 
+    libros.Alumno a
+LEFT JOIN 
+    libros.Prestamo p ON p.dni_alumno = a.dni
+LEFT JOIN 
+    libros.Historico_prestamo h ON h.dni_alumno = a.dni
+GROUP BY 
+    a.dni, a.nombre, a.apellido1, a.apellido2
+]]></query>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="activos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="activos"/>
+		<property name="com.jaspersoft.studio.field.label" value="activos"/>
+	</field>
+	<field name="historico" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="historico"/>
+		<property name="com.jaspersoft.studio.field.label" value="historico"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="132" splitType="Stretch">
+		<element kind="image" uuid="97705585-a0b5-4ec7-86f3-ae10c220e6af" x="420" y="0" width="135" height="132">
+			<expression><![CDATA["src/main/resources/es/juliogtrenard/proyectobiblioteca/img/biblioteca.png"]]></expression>
+		</element>
+		<element kind="frame" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a" mode="Opaque" x="0" y="0" width="410" height="95" backcolor="#000000">
+			<element kind="staticText" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21" x="0" y="0" width="370" height="66" bold="false" style="Title">
+				<text><![CDATA[Alumnos]]></text>
+			</element>
+			<element kind="staticText" uuid="8978eac3-c578-41c9-837e-48d2b0184642" x="157" y="66" width="249" height="29" fontSize="22.0" bold="false" style="SubTitle">
+				<text><![CDATA[Gestión de biblioteca]]></text>
+			</element>
+		</element>
+		<element kind="frame" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4" mode="Opaque" x="0" y="100" width="410" height="32" forecolor="#000000" backcolor="#FF0505">
+			<element kind="textField" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8" x="266" y="10" width="144" height="20" forecolor="#FFFFFF" fontSize="12.0" pattern="EEEEE dd MMMMM yyyy" hTextAlign="Right">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="26" splitType="Stretch"/>
+	<detail>
+		<band height="138">
+			<element kind="textField" uuid="6477d5e9-d756-4884-b1aa-cebef27874f2" positionType="Float" x="88" y="90" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{apellido1}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="textField" uuid="f84cfd9e-a107-4ec8-9a23-cdad51967eeb" positionType="Float" x="88" y="30" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{dni}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="077f0d04-37b6-4b58-835f-6d1fdf40b6bd"/>
+			</element>
+			<element kind="staticText" uuid="551d98bf-7050-4043-b508-09feb5bacbfe" mode="Opaque" x="289" y="30" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[Actuales]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d4f3bac-116e-41e0-be93-93b07b31358c"/>
+			</element>
+			<element kind="staticText" uuid="3445631e-4fe0-423d-b787-9136ae4ff9cd" mode="Opaque" x="289" y="0" width="264" height="18" forecolor="#FFFFFF" backcolor="#030303" bold="true" hTextAlign="Center" style="Column header">
+				<text><![CDATA[Préstamos]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="textField" uuid="42895f1c-c10d-4c7b-9f8c-3d1dfc11dd0f" positionType="Float" x="378" y="60" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{historico}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d4f3bac-116e-41e0-be93-93b07b31358c"/>
+			</element>
+			<element kind="staticText" uuid="3b0cd64d-b896-4c18-9c0d-740e80824ba5" mode="Opaque" x="0" y="0" width="264" height="18" forecolor="#FFFFFF" backcolor="#030303" bold="true" hTextAlign="Center" style="Column header">
+				<text><![CDATA[Alumno]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="textField" uuid="a09ef3be-1338-4048-ace4-9fcafbd26fa3" positionType="Float" x="88" y="60" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="staticText" uuid="5711993c-c4a9-4881-81f1-1aaad1df30bd" mode="Opaque" x="289" y="60" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[Históricos]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d4f3bac-116e-41e0-be93-93b07b31358c"/>
+			</element>
+			<element kind="textField" uuid="17a5f7e2-ca88-4e9c-b7c9-f582776ca908" positionType="Float" x="378" y="30" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{activos}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d4f3bac-116e-41e0-be93-93b07b31358c"/>
+			</element>
+			<element kind="staticText" uuid="78964d7e-3f93-4edd-9caa-19feb6eac7b5" mode="Opaque" x="-1" y="30" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[DNI]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="077f0d04-37b6-4b58-835f-6d1fdf40b6bd"/>
+			</element>
+			<element kind="staticText" uuid="4a714c72-b0f5-4bc7-89ff-726847ceacc8" mode="Opaque" x="-1" y="60" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[Nombre]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="staticText" uuid="ac841b47-b662-4f48-a182-1d08c089e54d" mode="Opaque" x="-1" y="90" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[Apellidos 1]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="textField" uuid="0b8dee0f-43d2-4d1c-af82-d9b39a3522f5" positionType="Float" x="90" y="120" width="176" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+				<expression><![CDATA[$F{apellido2}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+			<element kind="staticText" uuid="f3e686e6-765b-48cc-b910-fb99c6346bdd" mode="Opaque" x="1" y="120" width="79" height="18" forecolor="#FFFFFF" backcolor="#FF0505" bold="true" hTextAlign="Right" style="Column header">
+				<text><![CDATA[Apellidos 2]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdc8f47c-6eeb-493b-8fd7-2ed0b180dd26"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="4" splitType="Stretch">
+		<element kind="line" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1">
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</element>
+	</columnFooter>
+	<pageFooter height="25" splitType="Stretch">
+		<element kind="frame" uuid="729c3539-f946-4d0e-a0a7-bda2815ea1b0" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000">
+			<element kind="textField" uuid="4834e99c-7f6c-485a-b098-50e5187f2ab4" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" fontSize="10.0" evaluationTime="Report" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+			</element>
+			<element kind="textField" uuid="9825b46e-76f1-469a-abb8-a1cc27aad685" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" fontSize="10.0" bold="false" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></expression>
+			</element>
+			<element kind="textField" uuid="137d38c7-1a83-4fc5-b156-9d5f1b1a0ddc" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" fontSize="10.0" pattern="EEEEE dd MMMMM yyyy" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+	</pageFooter>
+</jasperReport>
