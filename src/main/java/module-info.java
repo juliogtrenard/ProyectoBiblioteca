@@ -1,9 +1,9 @@
 module es.juliogtrenard.proyectobiblioteca {
-    requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires org.slf4j;
     requires net.sf.jasperreports.core;
+    requires javafx.web;
 
 
     opens es.juliogtrenard.proyectobiblioteca to javafx.fxml;
