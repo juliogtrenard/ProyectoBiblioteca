@@ -1,0 +1,25 @@
+.table-view {
+    -fx-border-color: crimson;
+    -fx-table-cell-border-color: crimson;
+}
+
+.table-cell:filled {
+    -fx-background-color: #f3bbc7;
+}
+
+.table-view:row-selection .table-row-cell:selected .table-cell {
+    -fx-background-color: crimson;
+}
+
+.button {
+    -fx-background-color: crimson;
+}
+
+.button:hover {
+    -fx-background-color: indianred;
+}
+
+.text-field {
+    -fx-text-box-border: crimson;
+      -fx-focus-color: crimson;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Configuración del appender para la consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>AVISO CONSOLA --> %d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Configuración del appender de tipo RollingFileAppender -->
+    <appender name="FILE_ROLLER" class="ch.qos.logback.core.FileAppender">
+        <file>app_logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeBasedRollingPolicy">
+            <maxFileSize>1MB</maxFileSize>
+            <fileNamePattern>registroDeApp1MB.%i.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Configuración del logger -->
+    <logger name="es.juliogtrenard" level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE_ROLLER"/>
+    </logger>
+</configuration>
