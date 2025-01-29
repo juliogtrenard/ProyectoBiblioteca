@@ -620,16 +620,6 @@ public class PrincipalController implements Initializable {
     }
 
     /**
-     * Abre el informe de gráficos
-     *
-     * @param event evento del usuario
-     */
-    @FXML
-    void informeGraficos(ActionEvent event) {
-        mostrarInforme("InformeGraficos");
-    }
-
-    /**
      * Abre el informe de libros
      *
      * @param event evento del usuario
@@ -642,6 +632,30 @@ public class PrincipalController implements Initializable {
             HashMap<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("informePrestamos", JasperCompileManager.compileReport(getClass().getResourceAsStream("/es/juliogtrenard/proyectobiblioteca/reports/SubinformePrestamos.jrxml")));
             JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/reports/InformeLibros.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(report, parameters, connection.getConnection());
+            JasperViewer viewer = new JasperViewer(jprint, false);
+            viewer.setVisible(true);
+        } catch (JRException | SQLException e) {
+            logger.error(e.getMessage());
+            mostrarAlerta(resources.getString("report.cargar.error"));
+        }
+    }
+
+    /**
+     * Abre el informe de gráficos
+     *
+     * @param event evento del usuario
+     */
+    @FXML
+    void informeGraficos(ActionEvent event) {
+        DBConnect connection;
+        try {
+            connection = new DBConnect();
+            HashMap<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put("SubinformeGraficos1", JasperCompileManager.compileReport(getClass().getResourceAsStream("/es/juliogtrenard/proyectobiblioteca/reports/SubinformeGraficos1.jrxml")));
+            parameters.put("SubinformeGraficos2", JasperCompileManager.compileReport(getClass().getResourceAsStream("/es/juliogtrenard/proyectobiblioteca/reports/SubinformeGraficos2.jrxml")));
+            parameters.put("SubinformeGraficos3", JasperCompileManager.compileReport(getClass().getResourceAsStream("/es/juliogtrenard/proyectobiblioteca/reports/SubinformeGraficos3.jrxml")));
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/reports/InformeGraficos.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(report, parameters, connection.getConnection());
             JasperViewer viewer = new JasperViewer(jprint, false);
             viewer.setVisible(true);
