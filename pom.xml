@@ -143,7 +143,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                es.juliogtrenard.proyectobiblioteca.Lanzador
+                                proyectobiblioteca.Lanzador
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
@@ -156,6 +156,20 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version> 3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                            <mainClass>proyectobiblioteca.Lanzador</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.7.1</version>
                 <configuration>
@@ -164,7 +178,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>es.juliogtrenard.proyectobiblioteca.Lanzador</mainClass>
+                            <mainClass>proyectobiblioteca.Lanzador</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

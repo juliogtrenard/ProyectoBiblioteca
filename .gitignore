@@ -1,8 +1,4 @@
-target/classes
-target/archive-tmp
-target/generated-sources
-target/maven-archiver
-target/maven-status
+target/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
