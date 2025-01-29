@@ -178,7 +178,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>proyectobiblioteca.Lanzador</mainClass>
+                            <mainClass>es.juliogtrenard.proyectobiblioteca.Lanzador</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
