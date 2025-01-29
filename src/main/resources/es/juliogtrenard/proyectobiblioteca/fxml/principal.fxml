@@ -61,6 +61,11 @@
             </MenuItem>
         </Menu>
         <Menu mnemonicParsing="false" text="%principal.menu.ayuda">
+            <MenuItem mnemonicParsing="false" onAction="#ayuda" text="%menu.ayuda.html">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                </accelerator>
+            </MenuItem>
             <Menu mnemonicParsing="false" text="%principal.menu.ayuda.lenguaje">
                 <RadioMenuItem fx:id="langES" mnemonicParsing="false" text="Español">
                     <toggleGroup>

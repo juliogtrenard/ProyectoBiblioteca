@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -584,6 +585,31 @@ public class PrincipalController implements Initializable {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Abre la guía rápida
+     *
+     * @param event evento del usuario
+     */
+    @FXML
+    void ayuda(ActionEvent event) {
+        try {
+            Window ventana = tabla.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/fxml/guiahtml.fxml"),resources);
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
+            stage.setTitle(resources.getString("ayuda.html") + " - " + resources.getString("principal.titulo"));
+            stage.initOwner(ventana);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            mostrarAlerta(resources.getString("mensaje.ventana.error"));
         }
     }
 
