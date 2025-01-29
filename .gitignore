@@ -1,3 +1,9 @@
+target/classes
+target/archive-tmp
+target/generated-sources
+target/maven-archiver
+target/maven-status
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
@@ -6,7 +12,6 @@
 *.iws
 *.iml
 *.ipr
-*.jar
 configuration.properties
 lang.properties
 app_logs.log
