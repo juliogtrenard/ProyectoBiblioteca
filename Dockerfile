@@ -54,4 +54,4 @@ WORKDIR /ProyectoBiblioteca
 RUN mvn package
 
 # Ejecutar el JAR
-CMD java -jar target/ProyectoBiblioteca-1.0-SNAPSHOT.jar
+CMD java -jar target/ProyectoBiblioteca-1.0-SNAPSHOT-jar-with-dependencies.jar
