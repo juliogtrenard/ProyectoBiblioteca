@@ -19,18 +19,11 @@
             </font>
         </Label>
     </FlowPane>
-    <HBox VBox.vgrow="ALWAYS">
+    <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
         <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </VBox.margin>
-        <VBox HBox.hgrow="ALWAYS">
-            <HBox.margin>
-                <Insets right="5.0" />
-            </HBox.margin>
-            <Label text="%historial.prestamo" />
-            <ListView fx:id="lista" prefHeight="200.0" prefWidth="300.0" />
-        </VBox>
-        <VBox HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets left="5.0" />
             </HBox.margin>
@@ -56,11 +49,24 @@
                 </VBox.margin>
             </Label>
             <Spinner fx:id="minuto" />
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
         </VBox>
-    </HBox>
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+            <Label text="%historial.prestamo" />
+            <ListView fx:id="lista" prefHeight="200.0" prefWidth="300.0" />
+            <VBox.margin>
+                <Insets bottom="20.0" left="10.0" right="10.0" />
+            </VBox.margin>
+        </VBox>
+    </VBox>
     <FlowPane alignment="CENTER" hgap="50.0" VBox.vgrow="ALWAYS">
         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="20.0" />
         </VBox.margin>
         <Button defaultButton="true" mnemonicParsing="false" onAction="#guardar" text="%btn.guardar" />
         <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelar" text="%btn.cancelar" />

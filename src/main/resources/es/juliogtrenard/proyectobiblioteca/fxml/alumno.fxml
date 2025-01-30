@@ -1,103 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0"
-      stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <FlowPane alignment="CENTER" VBox.vgrow="ALWAYS">
         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </padding>
         <Label text="%estudiante.titulo">
             <font>
-                <Font size="24.0"/>
+                <Font size="24.0" />
             </font>
         </Label>
     </FlowPane>
-    <HBox VBox.vgrow="ALWAYS">
+    <VBox VBox.vgrow="ALWAYS">
         <VBox HBox.hgrow="ALWAYS">
             <HBox.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="DNI:"/>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="DNI:" />
             <TextField fx:id="txtDni">
                 <VBox.margin>
-                    <Insets bottom="10.0"/>
+                    <Insets bottom="10.0" />
                 </VBox.margin>
             </TextField>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.nombre"/>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.nombre" />
             <TextField fx:id="txtNombre">
                 <VBox.margin>
-                    <Insets bottom="10.0"/>
+                    <Insets bottom="10.0" />
                 </VBox.margin>
             </TextField>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.primer_apellido"/>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.primer_apellido" />
             <TextField fx:id="txtApellido1">
                 <VBox.margin>
-                    <Insets bottom="10.0"/>
+                    <Insets bottom="10.0" />
                 </VBox.margin>
             </TextField>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.segundo_apellido"/>
-            <TextField fx:id="txtApellido2"/>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%estudiante.segundo_apellido" />
+            <TextField fx:id="txtApellido2" />
+         <VBox.margin>
+            <Insets bottom="20.0" left="150.0" right="150.0" />
+         </VBox.margin>
         </VBox>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
             <HBox.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
             <Tab text="%tab.prestamo">
                 <VBox>
-                    <TableView fx:id="tablaPrestamos" prefHeight="250.0" VBox.vgrow="ALWAYS"/>
+                    <TableView fx:id="tablaPrestamos" prefHeight="250.0" VBox.vgrow="ALWAYS" />
                     <FlowPane alignment="CENTER" hgap="50.0" VBox.vgrow="ALWAYS">
                         <padding>
-                            <Insets top="5.0"/>
+                            <Insets top="5.0" />
                         </padding>
-                        <Button mnemonicParsing="false" onAction="#aniadirPrestamo"
-                                 text="%btn.aniadir"/>
-                        <Button fx:id="btnEditarPrestamo" disable="true" mnemonicParsing="false"
-                                onAction="#editarPrestamo" text="%btn.editar"/>
-                        <Button fx:id="btnEliminarPrestamo" disable="true" mnemonicParsing="false"
-                                onAction="#eliminarPrestamo"
-                                text="%btn.eliminar"/>
+                        <Button mnemonicParsing="false" onAction="#aniadirPrestamo" text="%btn.aniadir" />
+                        <Button fx:id="btnEditarPrestamo" disable="true" mnemonicParsing="false" onAction="#editarPrestamo" text="%btn.editar" />
+                        <Button fx:id="btnEliminarPrestamo" disable="true" mnemonicParsing="false" onAction="#eliminarPrestamo" text="%btn.eliminar" />
                     </FlowPane>
                 </VBox>
             </Tab>
             <Tab text="%tab.prestamo_historial">
                 <VBox>
-                    <TableView fx:id="tablaHistorial" prefHeight="250.0" VBox.vgrow="ALWAYS"/>
+                    <TableView fx:id="tablaHistorial" prefHeight="250.0" VBox.vgrow="ALWAYS" />
                     <FlowPane alignment="CENTER" hgap="50.0" VBox.vgrow="ALWAYS">
                         <padding>
-                            <Insets top="5.0"/>
+                            <Insets top="5.0" />
                         </padding>
-                        <Button mnemonicParsing="false" onAction="#aniadirHistorial"
-                                text="%btn.aniadir"/>
-                        <Button fx:id="btnEditarHistorial" disable="true" mnemonicParsing="false"
-                                onAction="#editarHistorial"
-                                text="%btn.editar"/>
-                        <Button fx:id="btnEliminarHistorial" disable="true" mnemonicParsing="false"
-                                onAction="#eliminarHistorial"
-                                text="%btn.eliminar"/>
+                        <Button mnemonicParsing="false" onAction="#aniadirHistorial" text="%btn.aniadir" />
+                        <Button fx:id="btnEditarHistorial" disable="true" mnemonicParsing="false" onAction="#editarHistorial" text="%btn.editar" />
+                        <Button fx:id="btnEliminarHistorial" disable="true" mnemonicParsing="false" onAction="#eliminarHistorial" text="%btn.eliminar" />
                     </FlowPane>
                 </VBox>
             </Tab>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </VBox.margin>
         </TabPane>
-    </HBox>
+    </VBox>
     <FlowPane alignment="CENTER" hgap="20.0" VBox.vgrow="ALWAYS">
         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            <Insets bottom="20.0" />
         </VBox.margin>
-        <Button defaultButton="true" mnemonicParsing="false" onAction="#guardar"
-                text="%btn.guardar"/>
-        <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelar"
-                text="%btn.cancelar"/>
+        <Button defaultButton="true" mnemonicParsing="false" onAction="#guardar" text="%btn.guardar" />
+        <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelar" text="%btn.cancelar" />
     </FlowPane>
 </VBox>

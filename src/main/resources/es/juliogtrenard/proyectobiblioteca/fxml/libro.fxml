@@ -36,18 +36,7 @@
         <GridPane.margin>
             <Insets bottom="20.0"/>
         </GridPane.margin>
-
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="CENTER" spacing="10.0">
-            <ImageView fx:id="foto" fitHeight="250.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../img/libro.png"/>
-            </ImageView>
-            <Button fx:id="btnFotoBorrar" disable="true" mnemonicParsing="false" onAction="#borrarFoto"
-                    text="%libro.portada.borrar"/>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#seleccionImagen"
-                    text="%libro.portada.btn"/>
-        </VBox>
-
-        <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" spacing="10.0">
+        <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" spacing="10.0">
             <Label text="%libro.codigo"/>
             <Label fx:id="lblCodigo"/>
 
@@ -69,6 +58,15 @@
                     <Tooltip text="%libro.baja.tooltip"/>
                 </tooltip>
             </CheckBox>
+        </VBox>
+        <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="CENTER" spacing="10.0">
+            <ImageView fx:id="foto" fitHeight="250.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../img/libro.png"/>
+            </ImageView>
+            <Button fx:id="btnFotoBorrar" disable="true" mnemonicParsing="false" onAction="#borrarFoto"
+                    text="%libro.portada.borrar"/>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#seleccionImagen"
+                    text="%libro.portada.btn"/>
         </VBox>
     </GridPane>
 
