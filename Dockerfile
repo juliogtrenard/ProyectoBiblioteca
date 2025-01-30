@@ -19,6 +19,18 @@ RUN apt-get install -y maven git
 
 # Librerias para lanzar Java FX
 RUN apt-get update && apt-get install -y \
+    libxss1 \
+    libx11-6 \
+    libxext6 \
+    libxi6 \
+    libxrender1 \
+    libxrandr2 \
+    libxxf86vm1 \
+    libglu1-mesa \
+    libfontconfig1 \
+    libgdk-pixbuf2.0-0 \
+    libgtk-3-0 \
+    libgl1-mesa-glx \
     libatk-bridge2.0-0 \
     libatspi2.0-0 \
     libcairo2 \
@@ -26,24 +38,11 @@ RUN apt-get update && apt-get install -y \
     libdrm2 \
     libegl1-mesa \
     libgbm1 \
-    libgtk-3-0 \
     libice6 \
     libsm6 \
     libwayland-egl1-mesa \
     libxkbcommon0 \
     libxkbcommon-x11-0
-    libxss1 \ 
-    libx11-6 \ 
-    libxext6 \ 
-    libxi6 \ 
-    libxrender1 \ 
-    libxrandr2 \ 
-    libxxf86vm1 \ 
-    libglu1-mesa \ 
-    libfontconfig1 \ 
-    libgdk-pixbuf2.0-0 \ 
-    libgtk-3-0 \ 
-    libgl1-mesa-glx
 
 # Clonar el repositorio
 RUN git clone https://github.com/juliogtrenard/ProyectoBiblioteca.git
