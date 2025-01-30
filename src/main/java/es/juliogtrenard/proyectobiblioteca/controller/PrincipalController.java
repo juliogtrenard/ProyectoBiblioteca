@@ -21,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -329,7 +328,8 @@ public class PrincipalController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.setMinWidth(600);
-                stage.setMinHeight(450);
+                stage.setMinHeight(550);
+                stage.setResizable(false);
                 stage.setTitle(resources.getString("ventana.aniadir") + " " + resources.getString("ventana.estudiante") + " - " + resources.getString("principal.titulo"));
                 stage.initOwner(ventana);
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -350,6 +350,7 @@ public class PrincipalController implements Initializable {
                 stage.setScene(scene);
                 stage.setMinWidth(400);
                 stage.setMinHeight(425);
+                stage.setResizable(false);
                 stage.setTitle(resources.getString("ventana.aniadir") + " " + resources.getString("ventana.libro") + " - " + resources.getString("principal.titulo"));
                 stage.initOwner(ventana);
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -370,6 +371,7 @@ public class PrincipalController implements Initializable {
                 stage.setScene(scene);
                 stage.setMinWidth(350);
                 stage.setMinHeight(350);
+                stage.setResizable(false);
                 stage.setTitle(resources.getString("ventana.aniadir") + " " + resources.getString("ventana.prestamo") + " - " + resources.getString("principal.titulo"));
                 stage.initOwner(ventana);
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -387,7 +389,8 @@ public class PrincipalController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.setMinWidth(500);
-                stage.setMinHeight(350);
+                stage.setMinHeight(450);
+                stage.setResizable(false);
                 stage.setTitle(resources.getString("ventana.aniadir") + " " + resources.getString("ventana.historial") + " - " + resources.getString("principal.titulo"));
                 stage.initOwner(ventana);
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -422,6 +425,7 @@ public class PrincipalController implements Initializable {
                     stage.setScene(scene);
                     stage.setMinWidth(600);
                     stage.setMinHeight(450);
+                    stage.setResizable(false);
                     stage.setTitle(resources.getString("ventana.editar") + " " + resources.getString("ventana.estudiante") + " - " + resources.getString("principal.titulo"));
                     stage.initOwner(ventana);
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -443,6 +447,7 @@ public class PrincipalController implements Initializable {
                     stage.setScene(scene);
                     stage.setMinWidth(400);
                     stage.setMinHeight(425);
+                    stage.setResizable(false);
                     stage.setTitle(resources.getString("ventana.editar") + " " + resources.getString("ventana.libro") + " - " + resources.getString("principal.titulo"));
                     stage.initOwner(ventana);
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -465,6 +470,7 @@ public class PrincipalController implements Initializable {
                     stage.setScene(scene);
                     stage.setMinWidth(350);
                     stage.setMinHeight(350);
+                    stage.setResizable(false);
                     stage.setTitle(resources.getString("ventana.editar") + " " + resources.getString("ventana.prestamo") + " - " + resources.getString("principal.titulo"));
                     stage.initOwner(ventana);
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -487,6 +493,7 @@ public class PrincipalController implements Initializable {
                     stage.setScene(scene);
                     stage.setMinWidth(400);
                     stage.setMinHeight(400);
+                    stage.setResizable(false);
                     stage.setTitle(resources.getString("ventana.editar") + " " + resources.getString("ventana.historial") + " - " + resources.getString("principal.titulo"));
                     stage.initOwner(ventana);
                     stage.initModality(Modality.APPLICATION_MODAL);
@@ -603,6 +610,7 @@ public class PrincipalController implements Initializable {
             stage.setScene(scene);
             stage.setMinWidth(800);
             stage.setMinHeight(600);
+            stage.setResizable(false);
             stage.setTitle(resources.getString("ayuda.html") + " - " + resources.getString("principal.titulo"));
             stage.initOwner(ventana);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -692,16 +700,6 @@ public class PrincipalController implements Initializable {
     }
 
     /**
-     * Cierra la aplicación
-     *
-     * @param event evento del usuario
-     */
-    @FXML
-    void cerrar(ActionEvent event) {
-        Platform.exit();
-    }
-
-    /**
      * Resetea la aplicación
      *
      * @param event evento del usuario
@@ -720,7 +718,7 @@ public class PrincipalController implements Initializable {
             if (f1.exists() && f2.exists()) {
                 if (f1.delete() && f2.delete()) {
                     mostrarConfirmacion(resources.getString("app.resetear.bien"));
-                    cerrar(null);
+                    Platform.exit();
                 } else {
                     mostrarAlerta(resources.getString("app.resetear.error"));
                 }
@@ -791,6 +789,11 @@ public class PrincipalController implements Initializable {
         colApellido2.setCellValueFactory(new PropertyValueFactory<>("apellido2"));
         tabla.getColumns().addAll(colDni,colNombre,colApellido1,colApellido2);
 
+        colDni.prefWidthProperty().bind(tabla.widthProperty().divide(4));
+        colNombre.prefWidthProperty().bind(tabla.widthProperty().divide(4));
+        colApellido1.prefWidthProperty().bind(tabla.widthProperty().divide(4));
+        colApellido2.prefWidthProperty().bind(tabla.widthProperty().divide(4));
+
         ObservableList<Alumno> alumnos = DaoAlumno.cargarListado();
         masterData.setAll(alumnos);
         tabla.setItems(alumnos);
@@ -825,6 +828,13 @@ public class PrincipalController implements Initializable {
         colBaja.setCellValueFactory(cellData -> javafx.beans.binding.Bindings.createObjectBinding(() -> cellData.getValue().getBaja() == 1 ? resources.getString("libro.baja.si") : resources.getString("libro.baja.no")));
         tabla.getColumns().addAll(colCodigo,colTitulo,colAutor,colEditorial,colEstado,colBaja);
 
+        colCodigo.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colTitulo.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colAutor.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colEditorial.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colEstado.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colBaja.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+
         ObservableList<Libro> libros = DaoLibro.cargarListado();
         masterData.setAll(libros);
         tabla.setItems(libros);
@@ -856,6 +866,12 @@ public class PrincipalController implements Initializable {
         TableColumn<Prestamo, String> colFechaPrestamo = new TableColumn<>(resources.getString("tabla.prestamo.fecha_prestamo"));
         colFechaPrestamo.setCellValueFactory(cellData -> javafx.beans.binding.Bindings.createObjectBinding(() -> FechaFormatter.formatearFecha(cellData.getValue().getFecha_prestamo())));
         tabla.getColumns().addAll(colId,colAlumno,colLibroTitulo,colLibroAutor,colFechaPrestamo);
+
+        colId.prefWidthProperty().bind(tabla.widthProperty().divide(5));
+        colAlumno.prefWidthProperty().bind(tabla.widthProperty().divide(5));
+        colLibroTitulo.prefWidthProperty().bind(tabla.widthProperty().divide(5));
+        colLibroAutor.prefWidthProperty().bind(tabla.widthProperty().divide(5));
+        colFechaPrestamo.prefWidthProperty().bind(tabla.widthProperty().divide(5));
 
         ObservableList<Prestamo> prestamos = DaoPrestamo.cargarListado();
         masterData.setAll(prestamos);
@@ -889,6 +905,13 @@ public class PrincipalController implements Initializable {
         TableColumn<HistorialPrestamo, String> colFechaDevolucion = new TableColumn<>(resources.getString("tabla.historial.fecha_devolucion"));
         colFechaDevolucion.setCellValueFactory(cellData -> javafx.beans.binding.Bindings.createObjectBinding(() -> FechaFormatter.formatearFecha(cellData.getValue().getFecha_devolucion())));
         tabla.getColumns().addAll(colId,colAlumno,colLibroTitulo,colLibroAutor,colFechaPrestamo,colFechaDevolucion);
+
+        colId.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colAlumno.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colLibroTitulo.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colLibroAutor.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colFechaPrestamo.prefWidthProperty().bind(tabla.widthProperty().divide(6));
+        colFechaDevolucion.prefWidthProperty().bind(tabla.widthProperty().divide(6));
 
         ObservableList<HistorialPrestamo> historialPrestamos = DaoHistorialPrestamo.cargarListado();
         masterData.setAll(historialPrestamos);
