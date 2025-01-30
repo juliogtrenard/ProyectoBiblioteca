@@ -4,7 +4,6 @@ import es.juliogtrenard.proyectobiblioteca.language.LanguageManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,8 +55,9 @@ public class BibliotecaApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/proyectobiblioteca/fxml/principal.fxml"), bundle);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle(bundle.getString("principal.titulo"));
-        stage.setMinWidth(600);
-        stage.setMinHeight(400);
+        stage.setMinWidth(900);
+        stage.setMinHeight(700);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
