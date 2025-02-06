@@ -108,7 +108,7 @@ public class LanguageManager {
      * Carga el bundle
      */
     private void loadResourceBundle() {
-        bundle = ResourceBundle.getBundle("/es/juliogtrenard/proyectobiblioteca/languages/lang", locale);
+        bundle = ResourceBundle.getBundle("es/juliogtrenard/proyectobiblioteca/languages/lang", locale);
     }
 
     /**
